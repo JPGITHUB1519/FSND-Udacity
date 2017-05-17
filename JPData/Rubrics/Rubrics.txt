@@ -1,0 +1,24 @@
+List: 
+
+https://github.com/luyangkenneth/udacity-fswd-nanodegree
+
+Project 1 - Movie Trailer Website
+https://review.udacity.com/#!/rubrics/02/view
+
+
+Project 3 - Tournaments Results
+https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004
+
+Project 4 - Item Catalog
+https://review.udacity.com/#!/rubrics/05/view
+
+Project 5 - Project: Neighborhood Map
+https://review.udacity.com/#!/rubrics/17/view
+
+Project X(It existed Before) - Conference Organization App
+
+https://review.udacity.com/#!/rubrics/07/view
+
+Project X(It existed Before) - Online Resume
+
+https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004

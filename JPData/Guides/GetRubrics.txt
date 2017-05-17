@@ -1,0 +1,4 @@
+You Can View the Rubrics as follow: 
+Change the number to see the rubric you want
+
+https://review.udacity.com/#!/rubrics/16/view
