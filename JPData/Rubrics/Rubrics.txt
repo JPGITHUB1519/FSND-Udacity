@@ -15,6 +15,9 @@ https://review.udacity.com/#!/rubrics/05/view
 Project 5 - Project: Neighborhood Map
 https://review.udacity.com/#!/rubrics/17/view
 
+Project 7 - Linux Server Configuration
+https://review.udacity.com/#!/rubrics/07/view
+
 Project X(It existed Before) - Conference Organization App
 
 https://review.udacity.com/#!/rubrics/07/view

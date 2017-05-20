@@ -1,0 +1,8 @@
+.full-width {
+	width: 100%;
+}
+
+.forced-center {
+	display: block;
+	margin: 0 auto;
+}
