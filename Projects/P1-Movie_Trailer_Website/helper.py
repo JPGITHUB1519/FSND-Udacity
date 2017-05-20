@@ -12,5 +12,3 @@ def get_movie_data(imdb):
     params = {"i": imdb, "apikey": config["API_KEY"]}
     data = json.loads(requests.get(url=config["API_URL"], params=params).text)
     return data
-
-# print get_movie_data("tt0110475")

@@ -10,16 +10,20 @@ main_page_head = '''
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
+    <title>JP Movies Trailer</title>
 
     <!-- Bootstrap 3 -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
+            background: black;
+            color: white;
         }
         #trailer .modal-dialog {
             margin-top: 200px;
@@ -42,6 +46,7 @@ main_page_head = '''
         }
         .movie-tile:hover {
             background-color: #EEE;
+            color: black;
             cursor: pointer;
         }
         .scale-media {
@@ -56,6 +61,19 @@ main_page_head = '''
             left: 0;
             top: 0;
             background-color: white;
+        }
+        #main-text {
+        	color: white;
+        	font-family: 'Pacifico', cursive;
+        	font-size: 25px;
+        }
+        .movie-info
+        {
+        	font-family: 'Roboto', sans-serif;
+        }
+        .movie-title
+        {
+        	font-family: 'Pacifico', cursive;
         }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -108,7 +126,7 @@ main_page_content = '''
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+            <a class="navbar-brand" href="#" id="main-text">JP Movie Trailers</a>
           </div>
         </div>
       </div>
@@ -125,8 +143,8 @@ main_page_content = '''
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
-    <p>{movie_info}</p>
+    <h2 class="movie-title">{movie_title}</h2>
+    <p class="movie-info">{movie_info}</p>
 </div>
 '''
 
@@ -151,7 +169,7 @@ def create_movie_tiles_content(movies):
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
             trailer_youtube_id=trailer_youtube_id,
-            movie_info=movie_info)
+            movie_info=movie_json_data["Plot"])
     return content
 
 

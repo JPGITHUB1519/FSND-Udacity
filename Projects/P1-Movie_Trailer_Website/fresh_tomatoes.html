@@ -3,16 +3,20 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Fresh Tomatoes!</title>
+    <title>JP Movies Trailer</title>
 
     <!-- Bootstrap 3 -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <style type="text/css" media="screen">
         body {
             padding-top: 80px;
+            background: black;
+            color: white;
         }
         #trailer .modal-dialog {
             margin-top: 200px;
@@ -35,6 +39,7 @@
         }
         .movie-tile:hover {
             background-color: #EEE;
+            color: black;
             cursor: pointer;
         }
         .scale-media {
@@ -49,6 +54,19 @@
             left: 0;
             top: 0;
             background-color: white;
+        }
+        #main-text {
+        	color: white;
+        	font-family: 'Pacifico', cursive;
+        	font-size: 25px;
+        }
+        .movie-info
+        {
+        	font-family: 'Roboto', sans-serif;
+        }
+        .movie-title
+        {
+        	font-family: 'Pacifico', cursive;
         }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -97,7 +115,7 @@
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">Fresh Tomatoes Movie Trailers</a>
+            <a class="navbar-brand" href="#" id="main-text">JP Movie Trailers</a>
           </div>
         </div>
       </div>
@@ -106,20 +124,20 @@
       
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Pmainxd74ac" data-toggle="modal" data-target="#trailer">
     <img src="https://upload.wikimedia.org/wikipedia/en/4/4b/The_Mask_%28film%29_poster.jpg" width="220" height="342">
-    <h2>The Mask</h2>
-    <p>Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.</p>
+    <h2 class="movie-title">The Mask</h2>
+    <p class="movie-info">Bank clerk Stanley Ipkiss is transformed into a manic superhero when he wears a mysterious mask.</p>
 </div>
 
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="mfmrPu43DF8" data-toggle="modal" data-target="#trailer">
     <img src="https://2982-presscdn-29-70-pagely.netdna-ssl.com/wp-content/uploads/2015/11/The-Hunger-Games-Poster1.jpg" width="220" height="342">
-    <h2>Hunger Games</h2>
-    <p>Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games: a televised competition in which two teenagers from each of the twelve Districts of Panem are chosen at random to fight to the death.</p>
+    <h2 class="movie-title">Hunger Games</h2>
+    <p class="movie-info">Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games: a televised competition in which two teenagers from each of the twelve Districts of Panem are chosen at random to fight to the death.</p>
 </div>
 
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="7RYpJAUMo2M" data-toggle="modal" data-target="#trailer">
     <img src="https://www.movieposter.com/posters/archive/main/228/MPW-114094" width="220" height="342">
-    <h2>Rocky</h2>
-    <p>Rocky Balboa, a small-time boxer, gets a supremely rare chance to fight heavy-weight champion Apollo Creed in a bout in which he strives to go the distance for his self-respect.</p>
+    <h2 class="movie-title">Rocky</h2>
+    <p class="movie-info">Rocky Balboa, a small-time boxer, gets a supremely rare chance to fight heavy-weight champion Apollo Creed in a bout in which he strives to go the distance for his self-respect.</p>
 </div>
 
     </div>
