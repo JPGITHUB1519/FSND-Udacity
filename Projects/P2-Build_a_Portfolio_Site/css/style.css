@@ -1,3 +1,9 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	background: black;
+	color: white;
+}
+
 .full-width {
 	width: 100%;
 }
@@ -5,4 +11,21 @@
 .forced-center {
 	display: block;
 	margin: 0 auto;
+}
+
+.font-pacifico {
+	font-family: 'Pacifico', cursive;
+}
+
+.font-roboto {
+	font-family: 'Roboto', sans-serif;
+}
+
+.name {
+	font-family: 'Pacifico', cursive;
+	font-size: 3.5em;
+}
+
+.profession {
+	font-size: 2em;
 }
