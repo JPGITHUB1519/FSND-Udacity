@@ -13,6 +13,7 @@ body {
 	margin: 0 auto;
 }
 
+/* fonts */
 .font-pacifico {
 	font-family: 'Pacifico', cursive;
 }
@@ -26,6 +27,42 @@ body {
 	font-size: 3.5em;
 }
 
+/* blocks */
 .profession {
 	font-size: 2em;
+}
+
+.modal-content {
+	background: black;
+}
+
+.close {
+	color: white;
+	opacity: 10;
+}
+
+.project-image {
+	height: 250px !important;
+}
+
+.featured-work .project img {
+	height: 250px;
+}
+
+/* buttons */
+.btn-dark
+{
+	background: black;
+	color: white;
+	border-color: #ccc;
+}
+
+.btn-dark:hover {
+	background: white;
+	color: black;
+}
+
+/* colors */
+.red-ninja {
+	color: 	#de0500;
 }
