@@ -27,3 +27,12 @@ h1 {
 img {
     max-width: 100%;
 }
+
+.social-icons {
+    padding: 1em;
+    text-align: center;
+}
+
+.zocial {
+    font-size: 1em;
+}
