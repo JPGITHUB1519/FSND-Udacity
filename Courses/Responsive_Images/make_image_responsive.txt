@@ -2,3 +2,6 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+
+https://webdesign.tutsplus.com/es/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015
