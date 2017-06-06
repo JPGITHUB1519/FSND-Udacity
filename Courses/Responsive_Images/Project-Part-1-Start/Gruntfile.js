@@ -14,13 +14,11 @@ module.exports = function(grunt) {
         options: {
           engine: 'im',
           sizes: [{
-            /*
-            Change these:
-            
-            width: ,
-            suffix: ,
-            quality:
-            */
+            name: 'normal',
+            // 50em = 800px, we must 2X = 1600
+            width: 1600,
+            suffix: '',
+            quality: 30
           }]
         },
 
@@ -64,7 +62,7 @@ module.exports = function(grunt) {
       },
     },
   });
-  
+
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
