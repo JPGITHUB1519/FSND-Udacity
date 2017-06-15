@@ -17,7 +17,9 @@ I've left some boilerplate below for you.
 }
 
 body {
-
+    background: black;
+    color: white;
+    font-family: 'Lato', sans-serif;
 }
 
 article {
@@ -31,6 +33,13 @@ h1 {
 
 img {
     max-width: 100%;
+}
+
+figcaption {
+    font-family: 'Spectral', serif;
+    font-size: 1.5em;
+    text-align: center;
+    font-style: italic;
 }
 
 .social-icons {
@@ -48,6 +57,23 @@ img {
 
 .zocial {
     font-size: 1em;
+}
+
+.forced-center {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 2em;
+}
+
+/* fonts */
+
+.font-pacifico {
+    font-family: 'Pacifico', cursive;
 }
 
 @media screen and (min-width: 700px) and (max-width: 1045px) {
