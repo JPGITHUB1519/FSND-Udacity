@@ -1,0 +1,13 @@
+
+Problem
+        Warning: Could not execute GraphicsMagick/ImageMagick: identify "-ping" "-format" "%m:%T:%s" "images_src/cockatoos.jpg" this most likely means the gm/convert binaries can't be found Use --force to continue.
+
+Solution:
+    https://discussions.udacity.com/t/setting-up-grunt/203667
+    
+    Uninstall ImageMagick
+
+    Install GraphicsMagick
+
+    In your gruntfile change the options for "engine" from "im" to "gm" as described here:
+    https://github.com/andismith/grunt-responsive-images#options8
