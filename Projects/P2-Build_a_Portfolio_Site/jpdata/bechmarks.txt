@@ -1,0 +1,20 @@
+Measures
+
+    * OLD
+
+        - Desktop, Table and Phones
+
+            DATA: 1.7 MB
+            TIME: 9.38 S
+
+    * Responsive
+
+        - Desktop
+
+            DATA: 807 KB
+            TIME: 4.68 S
+
+         - Phones
+
+            DATA: 737 KB
+            TIME: 4.02 S
