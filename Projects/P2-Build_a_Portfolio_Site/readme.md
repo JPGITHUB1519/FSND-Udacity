@@ -1,8 +1,8 @@
-## Portfolio Site
+# Portfolio Site
 
 ## Description
 
-This is the second Project from the Full Stack Web Developer Nanodegree by Udacity. About a Portofolio site e that will display images, descriptions and links to each of the portfolio projects I will complete throughout the course of the Full Stack Web Developer Nanodegree.
+This is the second Project from the Full Stack Web Developer Nanodegree by Udacity. About a Portofolio site that will display images, descriptions and links to each of the portfolio projects I will complete throughout the course of the Full Stack Web Developer Nanodegree.
 
 ## Usage
 
