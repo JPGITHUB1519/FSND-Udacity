@@ -1,0 +1,5 @@
+https://sookocheff.com/post/architecture/structuring-with-mvc/
+
+sample code
+
+https://github.com/soofaloofa/modelviewcontroller
