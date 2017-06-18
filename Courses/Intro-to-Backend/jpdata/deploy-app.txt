@@ -1,0 +1,5 @@
+1- Create an Local App
+2- Create an app on google app engine
+3- Copy the id of the app
+4- modify the app.yaml file of the local app and change  the name of the app by the id of the app in the cloud
+5- deploy

@@ -4,9 +4,6 @@ from models.Quote import Quote
 
 class QuotesHandler(Handler):
 
-    def get(self):
-        self.write("klk")
-
     def index(self):
         self.render("home.html", quotes=list(Quote().query()))
 
@@ -25,7 +22,7 @@ class QuotesHandler(Handler):
             cond_error = True
 
         if not author:
-            error_author = "You must fill the Autor"
+            error_author = "You must fill the Author"
             cond_error = True
 
         if not cond_error:
