@@ -1,6 +1,7 @@
 import webapp2
 import os
 import jinja2
+from utils import make_secure_val
 
 template_dir = os.path.join(os.path.dirname(__file__), '../templates')
 jinja_env = jinja2.Environment(
@@ -18,3 +19,6 @@ class Handler(webapp2.RequestHandler):
 
     def render(self, template, **kw):
         self.write(self.render_str(template, **kw))
+
+    def login(self, user):
+        self.response.set_cookie("user_id", make_secure_val(str(user.key())))

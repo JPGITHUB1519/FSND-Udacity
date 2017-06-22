@@ -1,0 +1,5 @@
+set 
+    http://webapp2.readthedocs.io/en/latest/guide/response.html
+
+get
+    https://stackoverflow.com/questions/11816196/how-to-get-cookies-values-on-google-app-engine-template
