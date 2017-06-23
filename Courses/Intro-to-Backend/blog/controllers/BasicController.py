@@ -21,4 +21,5 @@ class Handler(webapp2.RequestHandler):
         self.write(self.render_str(template, **kw))
 
     def login(self, user):
-        self.response.set_cookie("user_id", make_secure_val(str(user.key())))
+        self.response.set_cookie(
+            "user_id", make_secure_val(str(user.key.id())))

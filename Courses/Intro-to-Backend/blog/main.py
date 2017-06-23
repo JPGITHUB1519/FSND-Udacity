@@ -65,6 +65,13 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/signup', handler="controllers.AuthenticationController.AuthenticationHandler",
                   handler_method="signup_store", methods=['POST']),
 
+    webapp2.Route('/login', handler="controllers.AuthenticationController.AuthenticationHandler",
+                  handler_method="login_show", methods=['GET']),
+
+    webapp2.Route('/login', handler="controllers.AuthenticationController.AuthenticationHandler",
+                  handler_method="login_store", methods=['POST']),
+
+
     webapp2.Route('/welcome', handler="controllers.AuthenticationController.AuthenticationHandler",
                   handler_method="welcome", methods=['GET'])
 ], debug=True)
