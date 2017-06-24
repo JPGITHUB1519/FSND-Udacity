@@ -78,12 +78,12 @@ class AuthenticationHandler(Handler):
         error_login = ""
         cond_error = False
         user = User.query(
-            User.username == username and User.password == password).get()
+            User.username == username).get()
 
         if user:
-            if valid_password(username, password, str(User.password)):
+            if valid_password(username, password, user.password):
                 self.login(user)
-                self.redirect("/welcome?username" + user.username)
+                self.redirect("/welcome?username=" + user.username)
             else:
                 cond_error = True
         else:
@@ -91,8 +91,13 @@ class AuthenticationHandler(Handler):
 
         if cond_error:
             error_login = "Invalid Login"
-            self.render("login.html", error_login=error_login)
+            self.render("login.html", username=username,
+                        error_login=error_login)
 
     def welcome(self):
         username = self.request.get("username")
         self.render('welcome.html', username=username)
+
+    def logout(self):
+        self.response.delete_cookie('user_id')
+        self.redirect('/signup')
