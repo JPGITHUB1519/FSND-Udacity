@@ -1,6 +1,7 @@
 import random
 import hashlib
 import string
+import hmac
 
 SECRET = "PYTHON"
 
@@ -41,9 +42,13 @@ def valid_password(name, pw, h):
 ##############
 
 
+# def hash_str(s):
+#     # simuling hmac
+
+#     return hashlib.sha256(s + SECRET).hexdigest()
+
 def hash_str(s):
-        # simuling hmac
-    return hashlib.sha256(s + SECRET).hexdigest()
+    return hmac.new(SECRET, s).hexdigest()
 
 
 def make_secure_val(s):

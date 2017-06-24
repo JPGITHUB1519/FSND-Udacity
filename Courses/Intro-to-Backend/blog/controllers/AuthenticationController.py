@@ -67,7 +67,7 @@ class AuthenticationHandler(Handler):
                 username, password), email=email)
             user.put()
             self.login(user)
-            self.redirect('/welcome?username=' + user.username)
+            self.redirect('/welcome')
 
     def login_show(self):
         self.render("login.html")
@@ -83,7 +83,7 @@ class AuthenticationHandler(Handler):
         if user:
             if valid_password(username, password, user.password):
                 self.login(user)
-                self.redirect("/welcome?username=" + user.username)
+                self.redirect("/welcome")
             else:
                 cond_error = True
         else:
@@ -95,8 +95,13 @@ class AuthenticationHandler(Handler):
                         error_login=error_login)
 
     def welcome(self):
-        username = self.request.get("username")
-        self.render('welcome.html', username=username)
+        """
+            Welcome Page, Show a greeting and the username
+        """
+        # getting the user_id by the cookie
+        user_id = int(self.request.cookies.get("user_id").split("|")[0])
+        user = User.get_by_id(user_id)
+        self.render('welcome.html', username=user.username)
 
     def logout(self):
         self.response.delete_cookie('user_id')
