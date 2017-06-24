@@ -38,7 +38,7 @@ class AuthenticationHandler(Handler):
         error_exits_user = ""
         cond_error = False
 
-        user = User.query(User.username == username).get()
+        user = User.by_name(username)
         if not user:
             if not self.validate_user(username):
                 error_user = "That's not a valid Username papush :V"
@@ -77,8 +77,7 @@ class AuthenticationHandler(Handler):
         password = self.request.get("password")
         error_login = ""
         cond_error = False
-        user = User.query(
-            User.username == username).get()
+        user = User.by_name(username)
 
         if user:
             if valid_password(username, password, user.password):
@@ -100,7 +99,7 @@ class AuthenticationHandler(Handler):
         """
         # getting the user_id by the cookie
         user_id = int(self.request.cookies.get("user_id").split("|")[0])
-        user = User.get_by_id(user_id)
+        user = User.by_id(user_id)
         self.render('welcome.html', username=user.username)
 
     def logout(self):
