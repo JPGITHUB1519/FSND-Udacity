@@ -1,12 +1,15 @@
 from BasicController import Handler
 from models.Post import Post
+from decorators import login_required
 
 
 class BlogHandler(Handler):
 
+    @login_required
     def index(self):
         self.render("home.html", posts=list(Post().query()))
 
+    @login_required
     def show(self, post_id):
         post = Post.get_by_id(int(post_id))
         self.render("post_permalink.html", post=post)
@@ -14,6 +17,7 @@ class BlogHandler(Handler):
     def create(self):
         self.render("post_create.html")
 
+    @login_required
     def store(self):
         subject = self.request.get('subject')
         content = self.request.get('content')

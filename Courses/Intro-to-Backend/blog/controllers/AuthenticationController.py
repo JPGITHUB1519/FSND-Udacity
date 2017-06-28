@@ -2,6 +2,7 @@ import re
 from utils import make_password_hash, valid_password
 from BasicController import Handler
 from models.User import User
+from decorators import login_required
 
 
 class AuthenticationHandler(Handler):
@@ -70,7 +71,10 @@ class AuthenticationHandler(Handler):
             self.redirect('/welcome')
 
     def login_show(self):
-        self.render("login.html")
+        if not self.user:
+            self.render("login.html")
+        else:
+            self.redirect('/blog')
 
     def login_store(self):
         username = self.request.get("username")
@@ -93,6 +97,7 @@ class AuthenticationHandler(Handler):
             self.render("login.html", username=username,
                         error_login=error_login)
 
+    @login_required
     def welcome(self):
         """
             Welcome Page, Show a greeting and the username
@@ -102,6 +107,7 @@ class AuthenticationHandler(Handler):
         user = User.by_id(user_id)
         self.render('welcome.html', username=user.username)
 
+    @login_required
     def logout(self):
         self.response.delete_cookie('user_id')
         self.redirect('/signup')

@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/20831863/login-required-decorator-customized-handler-method-appengine

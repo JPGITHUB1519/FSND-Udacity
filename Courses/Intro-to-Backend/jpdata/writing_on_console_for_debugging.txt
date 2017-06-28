@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/727410/how-do-i-write-to-the-console-in-google-app-engine
