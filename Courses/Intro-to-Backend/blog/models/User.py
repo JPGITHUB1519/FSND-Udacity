@@ -1,4 +1,5 @@
 from google.appengine.ext import ndb
+from models.Post import Post
 
 
 class User(ndb.Model):
@@ -13,3 +14,7 @@ class User(ndb.Model):
     @classmethod
     def by_name(cls, username):
         return User.query(User.username == username).get()
+
+    @classmethod
+    def get_posts_by_user(cls, user_key):
+        return list(Post.query(Post.user == user_key))

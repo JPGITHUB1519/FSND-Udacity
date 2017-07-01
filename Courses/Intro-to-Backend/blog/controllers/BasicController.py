@@ -21,7 +21,8 @@ class Handler(webapp2.RequestHandler):
         return t.render(params)
 
     def render(self, template, **kw):
-        self.write(self.render_str(template, **kw))
+        # using user as a global variable to use in all templates
+        self.write(self.render_str(template, **dict(kw, user=self.user)))
 
     def login(self, user):
         self.response.set_cookie(
