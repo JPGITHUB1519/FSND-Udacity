@@ -17,7 +17,6 @@ class BlogHandler(Handler):
     def create(self):
         self.render("post_create.html")
 
-    @login_required
     def store(self):
         subject = self.request.get('subject')
         content = self.request.get('content')
@@ -34,7 +33,7 @@ class BlogHandler(Handler):
             cond_error = True
 
         if not cond_error:
-            post = Post(subject=subject, content=content)
+            post = Post(subject=subject, content=content, user=self.user.key)
             post.put()
             self.redirect('/blog/%s' % post.key.id())
 

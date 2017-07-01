@@ -1,0 +1,5 @@
+http://blog.notdot.net/2010/10/Modeling-relationships-in-App-Engine
+
+in ndb
+
+https://stackoverflow.com/questions/10077300/one-to-many-example-in-ndb

@@ -6,8 +6,7 @@ def login_required(handler_method):
 
     def check_login(self, *args):
         if self.request.method != 'GET':
-            raise webapp.error(
-                'The check_login decorator can only be used for GET request')
+            assert False, 'The check_login decorator can only be used for GET request'
         if not self.user:
             self.redirect('/login')
         else:
