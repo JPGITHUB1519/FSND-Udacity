@@ -1,0 +1,2 @@
+We cannot, We have to force it on!
+https://stackoverflow.com/questions/3740823/how-to-use-delete-method-in-google-app-engine-pythons-request-handler

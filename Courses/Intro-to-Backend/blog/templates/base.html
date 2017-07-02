@@ -8,6 +8,7 @@
     <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.js"></script>
     <script type="text/javascript" src="/static/js/main.js"></script>
+    <script type="text/javascript" src="/static/js/bootbox.min.js"></script>
 </head>
 <body>
     {% if user %}
@@ -101,5 +102,8 @@
 
     </div>
     <!-- /.container -->
+
+    <!-- customs scripts -->
+    {% block customs_scripts %} {% endblock %}
 </body>
 </html>

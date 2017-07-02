@@ -16,7 +16,4 @@ class TestHandler(Handler):
         #     cookie_value = int(cookie_value) + 1
         #     self.response.set_cookie('number_visits', str(cookie_value))
 
-        users = User.query(User.username ==
-                           "isaias" and User.email == "isaias@gmail.com").get()
-
-        self.write(users)
+        self.render("test.html")

@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/24978118/wrapper-for-jquerys-ajax-function-callback-fired-but-no-params

@@ -78,5 +78,15 @@ app = webapp2.WSGIApplication([
                   handler_method="logout", methods=['GET']),
 
     webapp2.Route('/welcome', handler="controllers.AuthenticationController.AuthenticationHandler",
-                  handler_method="welcome", methods=['GET'])
+                  handler_method="welcome", methods=['GET']),
+
+    # Rest Api Enpoints
+    webapp2.Route(r'/api/posts', handler="controllers.ApiController.ApiHandler",
+                  handler_method="post_index", methods=['GET']),
+
+    webapp2.Route(r'/api/posts/<:\d+>', handler="controllers.ApiController.ApiHandler",
+                  handler_method="post_show", methods=['GET']),
+
+    webapp2.Route(r'/api/posts/<:\d+>', handler="controllers.ApiController.ApiHandler",
+                  handler_method="post_http_wrapper", methods=['POST'])
 ], debug=True)

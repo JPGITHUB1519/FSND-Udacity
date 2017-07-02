@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $("#mybutton").click(function() {
+            $.getJSON("http://localhost:11080/api/posts/6348855016685568?callback=?", function(data) {
+                console.log(data);
+            });
+
+            // $.ajax({
+            //     url: "http://localhost:11080/api/posts/6348855016685568",
+            //     dataType: "JSONP",
+            //     jsonpCallback: "callback",
+            //     type: 'GET',
+            //     success: function(data) {
+            //         console.log(data);
+            //     }
+
+            // });
+        });
+    });
+  </script>
+</head>
+<body>
+    <div class="content">
+        <button id="mybutton" type="button">CALL!</button>
+    </div>
+</body>
+</html>

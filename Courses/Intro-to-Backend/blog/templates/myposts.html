@@ -19,13 +19,55 @@
             <tbody>
                 {% for post in posts %}
                     <tr>
-                        <td>{{ post.subject }}</td>
-                        <td>{{ post.content }}</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <td id="post-subject-{{ post.key.id() }}">{{ post.subject }}</td>
+                        <td id="post-content-{{ post.key.id() }}">{{ post.content }}</td>
+                        <td><a class="updater" data-post_id="{{ post.key.id() }}">Editar</a></td>
+                        <!-- <td><a data-toggle="modal" href="#edit-modal" id="{{ post.key.id() }}">Editar</a></td> -->
+                        <td>
+                            <a href="#" id="post-delete-link" data-post_id="{{ post.key.id() }}">Eliminar</a>
+                            <form method="post" id="delete-post-form">
+                                <input type="hidden" name="_method" value="delete">
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Editar Post # <span id="update_modal_idpost"></span></h4>
+                </div> 
+                <div class="modal-body">
+                    <form method="post" id="update-post-form">
+                        <input type="hidden" name="_method" value="put">
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" name="subject" class="form-control" id="subject">
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea class="form-control" name="content" id="content" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="update-form-button">Update</button>
+                            <button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customs_scripts %}
+    <script type="text/javascript" src="/static/js/myposts.js"></script>
 {% endblock %}
