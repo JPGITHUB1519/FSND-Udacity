@@ -18,13 +18,13 @@
             </thead>
             <tbody>
                 {% for post in posts %}
-                    <tr>
+                    <tr id="post-row-{{ post.key.id() }}">
                         <td id="post-subject-{{ post.key.id() }}">{{ post.subject }}</td>
                         <td id="post-content-{{ post.key.id() }}">{{ post.content }}</td>
-                        <td><a class="updater" data-post_id="{{ post.key.id() }}">Editar</a></td>
+                        <td><a href="#" class="post-update-link" data-post_id="{{ post.key.id() }}">Editar</a></td>
                         <!-- <td><a data-toggle="modal" href="#edit-modal" id="{{ post.key.id() }}">Editar</a></td> -->
                         <td>
-                            <a href="#" id="post-delete-link" data-post_id="{{ post.key.id() }}">Eliminar</a>
+                            <a href="#" class="post-delete-link" data-post_id="{{ post.key.id() }}">Eliminar</a>
                             <form method="post" id="delete-post-form">
                                 <input type="hidden" name="_method" value="delete">
                             </form>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" id="update-form-button">Update</button>
-                            <button type="submit" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </form>
                 </div>

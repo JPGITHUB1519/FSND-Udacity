@@ -2,7 +2,9 @@ var api_url = "http://localhost:11080/api";
 
 $(document).ready(function() {
     var post_id;
-    $(document).on("click", '.updater', function(e) {
+    // update link modal caller
+    // this sintax to support attach events to many links
+    $(document).on("click", '.post-update-link', function(e) {
         // open modal
         $("#edit-modal").modal();
         post_id = $(this).data("post_id");
@@ -39,7 +41,8 @@ $(document).ready(function() {
         });
     });
 
-    $("#post-delete-link").click(function(e) {
+    // delete link
+    $(document).on("click", '.post-delete-link', function(e) {
         e.preventDefault();
         var post_id = $(this).data("post_id");
         bootbox.confirm({
@@ -58,21 +61,25 @@ $(document).ready(function() {
             callback: function(result) {
                 url = api_url + "/posts/" + post_id;
                 if (result) {
-                    $("#delete-post-form").submit(function(e) {
-                        e.preventDefault();
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            data: $('#delete-post-form').serialize(),
-                            success: function(data) {
-                                console.log(data);
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.log(jqXHR.status + " " + textStatus);
-                            }
-                        });
-                    });
+                    $("#delete-post-form").submit();
                 }
+            }
+        });
+    });
+
+    // it triggers when submit anchor tag, we must separate the submition from the trigger link
+    $("#delete-post-form").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: $('#delete-post-form').serialize(),
+            success: function(data) {
+                // dinamically delete post from table
+                $("#post-row-" + data["data"]).remove();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + " " + textStatus);
             }
         });
     });

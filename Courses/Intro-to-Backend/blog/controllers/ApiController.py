@@ -37,9 +37,12 @@ class ApiHandler(Handler):
 
     def post_destroy(self, post_id):
         self.response.headers['Content-Type'] = 'application/json'
-        post = Post.by_id(int(post_id))
-        post.delete()
-        response = {"status": "success", data: None}
+        try:
+            post = Post.by_id(int(post_id))
+            post.key.delete()
+            response = {"status": "success", "data": post.key.id()}
+        except:
+            response = {"status": "fail", "data": None}
         self.response.write(json.dumps(response))
 
     def post_http_wrapper(self, *args):
