@@ -12,7 +12,10 @@ class BlogHandler(Handler):
     @login_required
     def show(self, post_id):
         post = Post.get_by_id(int(post_id))
-        self.render("post_permalink.html", post=post)
+        if post:
+            self.render("post_permalink.html", post=post)
+        else:
+            self.render("post_notfound.html")
 
     def create(self):
         self.render("post_create.html")
