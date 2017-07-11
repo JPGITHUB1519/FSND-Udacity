@@ -1,5 +1,6 @@
 from BasicController import Handler
 from models.Post import Post
+from models.Comment import Comment
 from decorators import login_required
 
 
@@ -13,7 +14,11 @@ class BlogHandler(Handler):
     def show(self, post_id):
         post = Post.get_by_id(int(post_id))
         if post:
-            self.render("post_permalink.html", post=post)
+            comments = Comment.query(Comment.post == post.key)
+            # comment = Comment(user=self.user.key, post=post.key,
+            #                   content="Tester Comment")
+            # comment.put()
+            self.render("post_permalink.html", post=post, comments=comments)
         else:
             self.render("post_notfound.html")
 
