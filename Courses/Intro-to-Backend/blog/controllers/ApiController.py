@@ -1,10 +1,13 @@
 import json
+import logging
+from myJsonEncoder import MyJsonEncoder
 from BasicController import Handler
 from models.Post import Post
+from models.Comment import Comment
 
 
 class ApiHandler(Handler):
-    # Post Enpoints
+    ##### Post Enpoints  #####
 
     def post_index(self):
         """ Get all Posts """
@@ -58,3 +61,11 @@ class ApiHandler(Handler):
             self.post_destroy(*args)
         else:
             self.error(405)
+
+    def comments_index(self, post_id):
+        """ Get all Comments """
+        self.response.headers['Content-Type'] = 'application/json'
+        post = Post.get_by_id(int(post_id))
+        comments = Comment.query(Comment.post == post.key).fetch()
+        self.response.write(json.dumps(
+            [comment.to_dict() for comment in comments], cls=MyJsonEncoder))

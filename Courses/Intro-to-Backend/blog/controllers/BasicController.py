@@ -1,7 +1,9 @@
 import webapp2
+import json
 import os
 import jinja2
 import logging
+from myJsonEncoder import MyJsonEncoder
 from utils import make_secure_val, check_secure_val
 from models.User import User
 from decorators import login_required
@@ -65,3 +67,8 @@ class Handler(webapp2.RequestHandler):
                 handler_method(self, *args)
 
         return check_login
+
+    def json_response(self, data, status=200):
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.status_int = status
+        self.response.write(json.dumps(data, cls=MyJsonEncoder))

@@ -1,0 +1,29 @@
+https://stackoverflow.com/questions/12664696/how-to-properly-output-json-with-app-engine-python-webapp2
+
+the third response
+
+I usually using like this:
+
+class JsonEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime) or isinstance(obj, date):
+            return obj.isoformat()
+        elif isinstance(obj, ndb.Key):
+            return obj.urlsafe()
+
+        return json.JSONEncoder.default(self, obj)
+
+class BaseRequestHandler(webapp2.RequestHandler):
+    def json_response(self, data, status=200):
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.status_int = status
+        self.response.write(json.dumps(data, cls=JsonEncoder))
+
+class APIHandler(BaseRequestHandler):
+    def get_product(self): 
+        product = Product.get(id=1)
+        if product:
+            jpro = product.to_dict()
+            self.json_response(jpro)
+        else:
+            self.json_response({'msg': 'product not found'}, status=404)

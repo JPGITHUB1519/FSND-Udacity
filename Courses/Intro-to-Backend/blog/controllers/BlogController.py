@@ -14,7 +14,7 @@ class BlogHandler(Handler):
     def show(self, post_id):
         post = Post.get_by_id(int(post_id))
         if post:
-            comments = Comment.query(Comment.post == post.key)
+            z
             # comment = Comment(user=self.user.key, post=post.key,
             #                   content="Tester Comment")
             # comment.put()

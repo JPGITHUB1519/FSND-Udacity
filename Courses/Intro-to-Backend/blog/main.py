@@ -80,7 +80,9 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/welcome', handler="controllers.AuthenticationController.AuthenticationHandler",
                   handler_method="welcome", methods=['GET']),
 
-    # Rest Api Enpoints
+    #### Rest Api Enpoints #####
+
+    ## Post endpoints ##
     webapp2.Route(r'/api/posts', handler="controllers.ApiController.ApiHandler",
                   handler_method="post_index", methods=['GET']),
 
@@ -88,5 +90,8 @@ app = webapp2.WSGIApplication([
                   handler_method="post_show", methods=['GET']),
 
     webapp2.Route(r'/api/posts/<:\d+>', handler="controllers.ApiController.ApiHandler",
-                  handler_method="post_http_wrapper", methods=['POST'])
+                  handler_method="post_http_wrapper", methods=['POST']),
+    ## Comments endpoints ##
+    webapp2.Route(r'/api/posts/<:\d+>/comments', handler="controllers.ApiController.ApiHandler",
+                  handler_method="comments_index", methods=['GET'])
 ], debug=True)
