@@ -21,11 +21,16 @@ class ApiHandler(Handler):
         Get a post by id
         """
         self.response.headers['Content-Type'] = 'application/json'
-        post = Post.by_id(int(post_id)).to_dict()
-        # fixing not serializable json data
-        post["date"] = str(post["date"])
-        post["user"] = post["user"].id()
-        self.response.out.write(json.dumps(post))
+        post = Post.by_id(int(post_id))
+        if post:
+            post = post.to_dict()
+            # fixing not serializable json data
+            # post["date"] = str(post["date"])
+            # post["user"] = post["user"].id()
+            response = json.dumps(post, cls=MyJsonEncoder)
+        else:
+            response = json.dumps({})
+        self.response.out.write(response)
 
     def post_update(self, post_id):
         self.response.headers['Content-Type'] = 'application/json'
@@ -66,6 +71,10 @@ class ApiHandler(Handler):
         """ Get all Comments """
         self.response.headers['Content-Type'] = 'application/json'
         post = Post.get_by_id(int(post_id))
-        comments = Comment.query(Comment.post == post.key).fetch()
-        self.response.write(json.dumps(
-            [comment.to_dict() for comment in comments], cls=MyJsonEncoder))
+        if post:
+            comments = Comment.query(Comment.post == post.key).fetch()
+        if comments:
+            self.write(json.dumps(
+                [comment.to_dict() for comment in comments], cls=MyJsonEncoder))
+        else:
+            self.writeson.dumps({""})
