@@ -93,5 +93,8 @@ app = webapp2.WSGIApplication([
                   handler_method="post_http_wrapper", methods=['POST']),
     ## Comments endpoints ##
     webapp2.Route(r'/api/posts/<:\d+>/comments', handler="controllers.ApiController.ApiHandler",
-                  handler_method="comments_index", methods=['GET'])
+                  handler_method="comments_index", methods=['GET']),
+
+    webapp2.Route(r'/api/posts/comments', handler="controllers.ApiController.ApiHandler",
+                  handler_method="comments_create", methods=['POST'])
 ], debug=True)

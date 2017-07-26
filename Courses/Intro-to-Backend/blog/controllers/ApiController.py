@@ -2,6 +2,7 @@ import json
 import logging
 from myJsonEncoder import MyJsonEncoder
 from BasicController import Handler
+from models.User import User
 from models.Post import Post
 from models.Comment import Comment
 
@@ -78,3 +79,20 @@ class ApiHandler(Handler):
                 [comment.to_dict() for comment in comments], cls=MyJsonEncoder))
         else:
             self.writeson.dumps({""})
+
+    def comments_create(self):
+        self.response.headers['Content-Type'] = 'application/json'
+        content = self.request.get('content')
+        user = User.by_id(int(self.request.get('user_id')))
+        post = Post.by_id(int(self.request.get('post_id')))
+        comment = Comment(content=content, user=user.key, post=post.key)
+        comment.put()
+        response = json.dumps(comment.to_dict(), cls=MyJsonEncoder)
+        self.write(response)
+
+    def comments_delete(self, comment_id):
+        self.response.headers['Content-Type'] = 'application/json'
+        comment = Comment.by_id(int(comment_id))
+        comment.delete()
+        response = {"status": "ok"}
+        self.write(json.dumps(response))
