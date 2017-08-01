@@ -82,12 +82,16 @@ class ApiHandler(Handler):
 
     def comments_create(self):
         self.response.headers['Content-Type'] = 'application/json'
-        content = self.request.get('content')
+        content = self.request.get('content') 
+        logging.error("###### DEBUGGING ########")
+        logging.error(self.request.get('user_id'))
         user = User.by_id(int(self.request.get('user_id')))
         post = Post.by_id(int(self.request.get('post_id')))
         comment = Comment(content=content, user=user.key, post=post.key)
         comment.put()
-        response = json.dumps(comment.to_dict(), cls=MyJsonEncoder)
+        response = comment.to_dict()
+        response["username"] = user.username
+        response = json.dumps(response, cls=MyJsonEncoder)
         self.write(response)
 
     def comments_delete(self, comment_id):
