@@ -84,3 +84,15 @@ class BlogHandler(Handler):
         else:
             self.render("post_update.html", post=post, user=self.user, error_subject=error_subject,
                         error_content=error_content, subject=subject)
+
+    def destroy(self, post_id):
+        post = Post.by_id(int(post_id))
+        if post:
+            if post.user == self.user.key:
+                post.key.delete()
+                self.redirect("/blog")
+            else:
+                self.render(
+                    "error.html", message="You only can delete your posts")
+        else:
+            self.render("404.html")

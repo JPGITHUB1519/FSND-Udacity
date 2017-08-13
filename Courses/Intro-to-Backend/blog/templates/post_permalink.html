@@ -19,7 +19,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <a href="/blog/updatepost/{{ post.key.id() }}" class="btn btn-success">Editar</a>
-                        <a href="/blog/deletepost/{{ post.key.id() }}" class="btn btn-danger">Eliminar</a>
+                        <form method="post" action="/blog/deletepost/{{ post.key.id() }}" style="display: inline;">
+                            <input type="submit" class="btn btn-danger" value="Eliminar"></a>
+                        </form>
                     </div>
                 </div>
             {% endif %}
