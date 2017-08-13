@@ -68,6 +68,7 @@ class ApiHandler(Handler):
         else:
             self.error(405)
 
+    ##### Comments Enpoints  #####
     def comments_index(self, post_id):
         """ Get all Comments """
         self.response.headers['Content-Type'] = 'application/json'
@@ -82,7 +83,7 @@ class ApiHandler(Handler):
 
     def comments_create(self):
         self.response.headers['Content-Type'] = 'application/json'
-        content = self.request.get('content') 
+        content = self.request.get('content')
         logging.error("###### DEBUGGING ########")
         logging.error(self.request.get('user_id'))
         user = User.by_id(int(self.request.get('user_id')))
@@ -100,3 +101,10 @@ class ApiHandler(Handler):
         comment.delete()
         response = {"status": "ok"}
         self.write(json.dumps(response))
+
+    ##### Like Enpoints  #####
+
+    def like_create(self, user_id, post_id):
+        self.response.headers['Content-Type'] = 'application/json'
+        post = post.by_id(int(post_id))
+        user = user.by_id(int(user_id))

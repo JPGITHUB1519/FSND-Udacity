@@ -1,4 +1,4 @@
-var api_url = "http://localhost:8080/api";
+var api_url = "http://localhost:11080/api";
 
 function getCookie(name) {
   var value = "; " + document.cookie;

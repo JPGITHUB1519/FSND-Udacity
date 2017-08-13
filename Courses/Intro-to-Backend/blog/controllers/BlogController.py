@@ -7,11 +7,9 @@ from decorators import login_required
 
 class BlogHandler(Handler):
 
-    @login_required
     def index(self):
         self.render("home.html", posts=list(Post().query()))
 
-    @login_required
     def show(self, post_id):
         post = Post.get_by_id(int(post_id))
         if post:
