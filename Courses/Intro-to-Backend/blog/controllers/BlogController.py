@@ -47,3 +47,40 @@ class BlogHandler(Handler):
 
         self.render("post_create.html", subject=subject, content=content, error_subject=error_subject,
                     error_content=error_content)
+
+    @login_required
+    def edit(self, post_id):
+        post = Post.by_id(int(post_id))
+        if post:
+            if post.user == self.user.key:
+                self.render("post_update.html", post=post)
+            else:
+                self.render(
+                    "error.html", message="You only can edit your posts")
+        else:
+            self.render("404.html")
+
+    def update(self, post_id):
+        post = Post.by_id(int(post_id))
+        subject = self.request.get('subject')
+        content = self.request.get('content')
+        error_subject = ""
+        error_content = ""
+        cond_error = False
+
+        if not subject:
+            error_subject = "You must fill the Subject"
+            cond_error = True
+
+        if not content:
+            error_content = "You must fill the Content"
+            cond_error = True
+
+        if not cond_error:
+            post.subject = subject
+            post.content = content
+            post.put()
+            self.redirect('/blog/%s' % post.key.id())
+        else:
+            self.render("post_update.html", post=post, user=self.user, error_subject=error_subject,
+                        error_content=error_content, subject=subject)

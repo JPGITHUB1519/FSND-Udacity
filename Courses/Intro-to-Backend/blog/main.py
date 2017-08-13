@@ -55,6 +55,12 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/blog/newpost', handler="controllers.BlogController.BlogHandler",
                   handler_method="store", methods=['POST']),
 
+    webapp2.Route(r'/blog/updatepost/<:\d+>', handler="controllers.BlogController.BlogHandler",
+                  handler_method="edit", methods=['GET']),
+
+    webapp2.Route(r'/blog/updatepost/<:\d+>', handler="controllers.BlogController.BlogHandler",
+                  handler_method="update", methods=['POST']),
+
     webapp2.Route('/blog/myposts', handler="controllers.MyPostsController.MyPostsHandler",
                   handler_method="index", methods=['GET']),
 

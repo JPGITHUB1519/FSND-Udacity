@@ -12,8 +12,17 @@
 
             <!-- Author -->
             <p class="lead">
-                by <a href="#">Start Bootstrap</a>
+                by <a href="#">{{ post.user.get().username }}</a>
             </p>
+            
+            {% if post.user == user.key %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <a href="/blog/updatepost/{{ post.key.id() }}" class="btn btn-success">Editar</a>
+                        <a href="/blog/deletepost/{{ post.key.id() }}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            {% endif %}
 
             <hr>
 
