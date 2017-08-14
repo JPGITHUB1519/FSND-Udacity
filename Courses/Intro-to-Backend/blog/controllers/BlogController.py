@@ -1,7 +1,11 @@
 import logging
+import time
+from google.appengine.ext import ndb
+from google.appengine.api import memcache
 from BasicController import Handler
 from models.Post import Post
 from models.Comment import Comment
+from models.Like import Like
 from decorators import login_required
 
 
@@ -17,8 +21,11 @@ class BlogHandler(Handler):
             #                   content="Tester Comment")
             # comment.put()
             comments = Comment.query(Comment.post == post.key).fetch()
-            logging.error(comments)
-            self.render("post_permalink.html", post=post, comments=comments)
+            # memcache.flush_all()
+            like = Like.query(
+                ndb.AND(Like.user == self.user.key, Like.post == post.key)).get()
+            self.render("post_permalink.html", post=post,
+                        comments=comments, like=like, user=self.user)
         else:
             self.render("post_notfound.html")
 
@@ -96,3 +103,20 @@ class BlogHandler(Handler):
                     "error.html", message="You only can delete your posts")
         else:
             self.render("404.html")
+
+    def like(self, post_id):
+        post = Post.by_id(int(post_id))
+        like = Like.query(
+            ndb.AND(Like.user == self.user.key, Like.post == post.key)).get()
+        if like:
+            like.key.delete()
+            post.likes = post.likes - 1
+            post.put()
+        else:
+            like = Like(user=self.user.key, post=post.key)
+            like.put()
+            post.likes = post.likes + 1
+            post.put()
+        # memcache problem fix
+        time.sleep(0.1)
+        self.redirect('/blog/%s' % post_id)

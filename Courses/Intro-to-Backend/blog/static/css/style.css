@@ -42,5 +42,19 @@ footer {
    Update Modal
    ========================================================================== */
 #update_modal_idpost {
+    cursor: pointer;
     color: blue;
+}
+
+#like-panel a {
+    color: black;
+}
+
+#like-panel .like-icon {
+    font-size: 4em;
+    padding: 0.2em;
+}
+
+#like-panel .like-text {
+    font-size: 2.5em;
 }
