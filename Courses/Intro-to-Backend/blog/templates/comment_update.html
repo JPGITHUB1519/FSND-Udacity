@@ -8,5 +8,6 @@
             <h3 class="error-color">{{ error_content }}</h3>
         </div>
         <button type="submit" class="btn btn-info">Save</button>
+        <a href="/blog/{{ comment.post.id() }}"><button type="submit" class="btn btn-danger">Cancel</button></a>
     </form>
 {% endblock %}
