@@ -91,6 +91,7 @@ class ApiHandler(Handler):
         comment = Comment(content=content, user=user.key, post=post.key)
         comment.put()
         response = comment.to_dict()
+        response["id"] = comment.key.id()
         response["username"] = user.username
         response = json.dumps(response, cls=MyJsonEncoder)
         self.write(response)

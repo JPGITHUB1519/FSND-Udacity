@@ -42,6 +42,7 @@
                 <div class="row">
                     <div class="col-xs-12" id="like-panel">
                         <form id="like-form" method="post" action="/blog/likepost/{{ post.key.id() }}">
+                        {% if user %}
                             {% if like %}
                                 <a href="#" id="like-button" title="Unlike"><i class="fa fa-thumbs-up like-icon" aria-hidden="true"></i></a>
                                 <span class="like-text">{{ post.likes }}</span>
@@ -49,6 +50,11 @@
                                 <a href="#" id="like-button"><i class="fa fa-thumbs-o-up like-icon" aria-hidden="true" title="like"></i></a>
                                 <span class="like-text">{{ post.likes }}</span>
                             {% endif %}
+
+                        {% else %}
+                            <i class="fa fa-thumbs-up like-icon" aria-hidden="true"></i></a>
+                                <span class="like-text">{{ post.likes }}</span>
+                        {% endif %}
                         </form>
                         
                     </div>
@@ -64,7 +70,7 @@
                     <form role="form" method="post" id="comments-form">
                         <input type="hidden" name="post_id" id="post_id" value="{{ post.key.id() }}">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="content"></textarea>
+                            <textarea class="form-control" rows="3" name="content" id="comment-input"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" id="comments-form-submit">Submit</button>
                     </form>
@@ -77,15 +83,23 @@
                 <!-- Comment -->
                 {% for comment in comments %}
                     <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="http://placehold.it/64x64" alt="">
-                        </a>
                         <div class="media-body">
                             <h4 class="media-heading">  {{ comment.user.get().username }}
                                 <small>{{ comment.date|string }}</small>
                             </h4>
                             {{ comment.content }}
                         </div>
+                        {% if comment.user == user.key %}
+                            <div class="row">
+                                <div class="col-xs-12 comment-action-panel">
+                                    <a href="#" class="btn btn-success">Editar</a>
+                                    <form id="delete-comment-form" method="post" action="/blog/deletecomment/{{ comment.key.id() }}" class="display-inline">
+                                        <a href="#" class="btn btn-danger comment-deleter">Eliminar</a>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
                 </div>

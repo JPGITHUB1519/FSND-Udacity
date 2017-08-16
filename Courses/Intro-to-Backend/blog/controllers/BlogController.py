@@ -22,8 +22,11 @@ class BlogHandler(Handler):
             # comment.put()
             comments = Comment.query(Comment.post == post.key).fetch()
             # memcache.flush_all()
-            like = Like.query(
-                ndb.AND(Like.user == self.user.key, Like.post == post.key)).get()
+            if self.user:
+                like = Like.query(
+                    ndb.AND(Like.user == self.user.key, Like.post == post.key)).get()
+            else:
+                like = None
             self.render("post_permalink.html", post=post,
                         comments=comments, like=like, user=self.user)
         else:

@@ -30,16 +30,23 @@ $(document).ready(function() {
                 success: function(data) {
                     // dinamically delete post from table
                     console.log(data);
-                    comment_string_html = '<div class="media"> <a class="pull-left" href="#"> <img class="media-object" src="http://placehold.it/64x64" alt=""> </a> <div class="media-body"> <h4 class="media-heading"> <%username%> <small> <%date%> </small> </h4> <%content%> </div> </div>'
-                    comment_string_html = comment_string_html.replace("<%username%>", data.username)
-                    comment_string_html = comment_string_html.replace("<%date%>", data.date)
-                    comment_string_html = comment_string_html.replace("<%content%>", data.content)
+                    comment_string_html = '<div class="media"> <div class="media-body"> <h4 class="media-heading"> <%username%> <small> <%date%> </small> </h4> <%content%> </div> <div class="row"> <div class="col-xs-12 comment-action-panel"> <a href="/blog/updatecomment/<%comment_id%>" class="btn btn-success">Editar</a> <form id="delete-comment-form" method="post" action="/blog/deletecomment/<%comment_id%>" class="display-inline"> <a href="#" class="btn btn-danger comment-deleter">Eliminar</a> </form> </div> </div> </div>'
+                    comment_string_html = comment_string_html.replace("<%username%>", data.username);
+                    comment_string_html = comment_string_html.replace("<%date%>", data.date);
+                    comment_string_html = comment_string_html.replace("<%content%>", data.content);
+                    comment_string_html = comment_string_html.replace("<%comment_id%>", data.id);
                     $("#comments").prepend(comment_string_html);
+                    $("#comment-input").val("");
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR.status + " " + textStatus);
                 }
             });
         });
+    });
+
+    $(document).on("click", '.comment-deleter', function(e) {
+        e.preventDefault();
+        $("#delete-comment-form").submit();
     });
 });
