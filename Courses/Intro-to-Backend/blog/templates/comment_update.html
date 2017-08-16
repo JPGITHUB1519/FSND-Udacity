@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="post" action="/blog/updatecomment/{{ comment.key.id() }}">
+        <div class="form-group">
+            <label>Content</label>
+            <textarea name="content" class="form-control">{{ comment.content }}</textarea>           
+            <h3 class="error-color">{{ error_content }}</h3>
+        </div>
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+{% endblock %}

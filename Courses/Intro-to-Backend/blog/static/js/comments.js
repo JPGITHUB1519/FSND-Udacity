@@ -1,5 +1,11 @@
 var api_url = "http://localhost:11080/api";
 
+// replace all helper function
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
@@ -34,7 +40,7 @@ $(document).ready(function() {
                     comment_string_html = comment_string_html.replace("<%username%>", data.username);
                     comment_string_html = comment_string_html.replace("<%date%>", data.date);
                     comment_string_html = comment_string_html.replace("<%content%>", data.content);
-                    comment_string_html = comment_string_html.replace("<%comment_id%>", data.id);
+                    comment_string_html = comment_string_html.replaceAll("<%comment_id%>", data.id);
                     $("#comments").prepend(comment_string_html);
                     $("#comment-input").val("");
                 },

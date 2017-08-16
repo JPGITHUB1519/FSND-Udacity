@@ -92,7 +92,7 @@
                         {% if comment.user == user.key %}
                             <div class="row">
                                 <div class="col-xs-12 comment-action-panel">
-                                    <a href="#" class="btn btn-success">Editar</a>
+                                    <a href="/blog/updatecomment/{{ comment.key.id() }}" class="btn btn-success">Editar</a>
                                     <form id="delete-comment-form" method="post" action="/blog/deletecomment/{{ comment.key.id() }}" class="display-inline">
                                         <a href="#" class="btn btn-danger comment-deleter">Eliminar</a>
                                     </form>

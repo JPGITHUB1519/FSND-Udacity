@@ -71,6 +71,12 @@ app = webapp2.WSGIApplication([
                   handler_method="index", methods=['GET']),
 
     # CommentsControllers
+    webapp2.Route(r'/blog/updatecomment/<:\d+>', handler="controllers.CommentController.CommentHandler",
+                  handler_method="edit", methods=['GET']),
+
+    webapp2.Route(r'/blog/updatecomment/<:\d+>', handler="controllers.CommentController.CommentHandler",
+                  handler_method="update", methods=['POST']),
+
     webapp2.Route(r'/blog/deletecomment/<:\d+>', handler="controllers.CommentController.CommentHandler",
                   handler_method="destroy", methods=['POST']),
 
