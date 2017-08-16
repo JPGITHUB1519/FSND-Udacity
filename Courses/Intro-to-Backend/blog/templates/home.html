@@ -2,6 +2,7 @@
 {% block content %}
     <div class="row">
         <div class="col-lg-8">
+        {% if posts %}
             {% for post in posts %}
                 <!-- Blog Post Content Column -->
                 
@@ -13,7 +14,7 @@
 
                     <!-- Author -->
                     <p class="lead">
-                        by <a href="#">{{ post.user.get().username }}</a>
+                        by <strong>{{ post.user.get().username }}</strong>
                     </p>
 
                     <hr>
@@ -28,6 +29,13 @@
 
                     <hr>
             {% endfor %}
+        {% else %}
+            {% if user %}
+                <h2 class="text-center">There are any Posts, <a href="/blog/newpost">Create new Post!</a></h2>
+            {% else %}
+                <h2 class="text-center">There are any Posts, <a href="/login">Login to create a new Post!</a></h2>
+            {% endif %}
+        {% endif %}
         </div>
     </div>
     <!-- /.row -->

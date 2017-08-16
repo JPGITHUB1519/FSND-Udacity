@@ -1,4 +1,4 @@
-var api_url = "http://localhost:11080/api";
+var api_url = "/api";
 
 // replace all helper function
 String.prototype.replaceAll = function(search, replacement) {

@@ -1,4 +1,4 @@
-var api_url = "http://localhost:11080/api";
+var api_url = "/api";
 
 $(document).ready(function() {
     var post_id;

@@ -12,7 +12,7 @@ from decorators import login_required
 class BlogHandler(Handler):
 
     def index(self):
-        self.render("home.html", posts=list(Post().query()))
+        self.render("home.html", posts=list(Post().query()), user=self.user)
 
     def show(self, post_id):
         post = Post.get_by_id(int(post_id))
@@ -32,6 +32,7 @@ class BlogHandler(Handler):
         else:
             self.render("post_notfound.html")
 
+    @login_required
     def create(self):
         self.render("post_create.html")
 
