@@ -1,0 +1,5 @@
+SQLALCHEMY
+	http://pythoncentral.io/introductory-tutorial-python-sqlalchemy/
+
+Python and SQLLITE
+	http://pythoncentral.io/introductory-tutorial-python-sqlalchemy/
