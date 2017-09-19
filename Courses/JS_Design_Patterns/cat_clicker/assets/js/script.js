@@ -21,6 +21,21 @@ var cats = {
 		"cat_name": "Chewie",
 		'cat_image': "chewie_cat.jpg",
 		"cat_click_count": 0
+	},
+	"3": {
+		"cat_name": "Jetske",
+		'cat_image': "jetske.jpg",
+		"cat_click_count": 0
+	},
+	"4": {
+		"cat_name": "Larry",
+		'cat_image': "larry.jpg",
+		"cat_click_count": 0
+	},
+	"5": {
+		"cat_name": "Miso",
+		'cat_image': "miso.jpg",
+		"cat_click_count": 0
 	}
 }
 
@@ -69,7 +84,6 @@ $(document).ready(function() {
 		var cat_id = $(this).data("cat_id");
 		cats[cat_id]["cat_click_count"] = cats[cat_id]["cat_click_count"] + 1;
 		// update count view
-		$("#clicker_count_" + cat_id).text("Clicks: " + cats[cat_id]["cat_click_count"]);
-		console.log(cats[cat_id]["cat_click_count"]);
+		$("#clicker_count_" + cat_id).html("Clicks: " + "<strong>" + cats[cat_id]["cat_click_count"] + "</strong>");
 	});
 });
