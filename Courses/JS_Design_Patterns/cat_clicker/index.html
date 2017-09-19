@@ -3,12 +3,29 @@
 <head>
 	<title>Cat Clicker</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/script.js"></script>
 </head>
 <body>	
 	<div class="container">
-		<div id="cats-container">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 class="text-center">Cat Clicker</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="list-group" id="cats-list">
+				</div>
+			</div>
+			<div class="col-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading text-center">Cat Info</div>
+					<div class="panel-content" id="cat-info">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
