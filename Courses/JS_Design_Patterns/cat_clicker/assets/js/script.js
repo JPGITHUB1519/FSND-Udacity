@@ -1,89 +1,153 @@
-// forces
-// replace all force
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
 
-var default_cant = 0;
-
 var config = {
 	"images_dir": "assets/images/"
 }
 
-var cats = {
-	"1": {
-		"cat_name": "Xuxa",
-		'cat_image': "xuxa_cat.jpg",
-		"cat_click_count": 0
-	},
-	"2": {
-		"cat_name": "Chewie",
-		'cat_image': "chewie_cat.jpg",
-		"cat_click_count": 0
-	},
-	"3": {
-		"cat_name": "Jetske",
-		'cat_image': "jetske.jpg",
-		"cat_click_count": 0
-	},
-	"4": {
-		"cat_name": "Larry",
-		'cat_image': "larry.jpg",
-		"cat_click_count": 0
-	},
-	"5": {
-		"cat_name": "Miso",
-		'cat_image': "miso.jpg",
-		"cat_click_count": 0
-	}
-}
 
-// html template for the list item
-var cat_list_html = `
-	<a href="#" class="list-group-item cat-link" id="cat_{{cat_id}}_link" data-cat_id={{cat_id}}>{{cat_name}}</a>
-`;
+$(function() {
+	var model = {
+		cats: []
+	};
 
-// html template for the info container
-var cat_html = `
-	<h2 class="text-center">{{cat_name}}</h2>
-	<img src="{{cat_image}}" class="img-responsive img-circle center-block">
-	<h2 id="clicker_count_{{cat_id}}" class="text-center">Clicks: <strong>{{cat_click_count}}</strong></h2>
-	<button class="clicker_button btn btn-primary center-block" id="cat_{{cat_id}}_button" data-cat_id={{cat_id}}>Vote for {{cat_name}}</button>
-`
+	var octopus = {
 
-/// this will be generated
-var cats_list_html = "";
+		addNewCat: function(cat_obj) {
+			model.add(cat_obj);
+		},
 
-$(document).ready(function() {
-	// generate list cats html from datastructure
-	for (var cat_id in cats) {
-		var cat_list_html_aux = cat_list_html;
-		for (cat_attr in cats[cat_id]) {
-			cat_list_html_aux = cat_list_html_aux.replaceAll("{{cat_name}}", cats[cat_id]["cat_name"]);
-			cat_list_html_aux = cat_list_html_aux.replaceAll("{{cat_id}}", cat_id);
+		fillModelWithDummyData: function() {
+			var cats_initial_data = [
+				{
+					"cat_id": 1,
+					"cat_name": "Xuxa",
+					'cat_image': "xuxa_cat.jpg",
+					"cat_click_count": 0
+				},
+				{
+					"cat_id": 2,
+					"cat_name": "Chewie",
+					'cat_image': "chewie_cat.jpg",
+					"cat_click_count": 0
+				},
+				{
+					"cat_id": 3,
+					"cat_name": "Jetske",
+					'cat_image': "jetske.jpg",
+					"cat_click_count": 0
+				},
+				{
+					"cat_id": 4,
+					"cat_name": "Larry",
+					'cat_image': "larry.jpg",
+					"cat_click_count": 0
+				},
+				{
+					"cat_id": 5,
+					"cat_name": "Miso",
+					'cat_image': "miso.jpg",
+					"cat_click_count": 0
+				}
+			];
+
+			model.cats = cats_initial_data;
+
+		},
+
+		getCatById: function(cat_id) {
+			/**
+             * get a car obj by its cat_id
+             * return Cat
+             */
+			return model.cats.filter(function(cat_obj) {
+				return cat_obj.cat_id == cat_id;
+			})[0];
+		},
+
+		getFirstCat: function() {
+			return model.cats[0];
+		},
+
+		voteCat: function(cat_id) {
+			/**
+             * Vote for a cat and update the view
+             * 
+             */
+			model.cats.filter(function(cat_obj) {
+				if(cat_obj.cat_id == cat_id) {
+					cat_obj.cat_click_count += 1;
+				}
+			});
+			view_cat_profile.render();
+		},
+
+		updateCatProfile: function(cat_id) {
+			/**
+             * Show the cat info of the clicked cat on the list
+             * 
+             */
+			var cat_obj = this.getCatById(cat_id);
+			view_cat_profile.current_cat = cat_obj;
+			view_cat_profile.render();
+		},	
+
+		init: function() {
+			this.fillModelWithDummyData();
+			view_cats_list.init();
+			view_cat_profile.init();
 		}
-		cats_list_html += cat_list_html_aux;
 	}
 
-	// when click on a cat link show the cat info on the pane
-	$("#cats-list").on('click', '.cat-link', function(e) {
-		var cat_id = $(this).data("cat_id");
-		var cat_html_aux = cat_html;
-		cat_html_aux = cat_html_aux.replaceAll("{{cat_id}}", cat_id);
-		cat_html_aux = cat_html_aux.replaceAll("{{cat_name}}", cats[cat_id]["cat_name"]);
-		cat_html_aux = cat_html_aux.replaceAll("{{cat_image}}", config["images_dir"] + cats[cat_id]["cat_image"]);
-		cat_html_aux = cat_html_aux.replaceAll("{{cat_click_count}}", cats[cat_id]["cat_click_count"]);
-		$("#cat-info").html(cat_html_aux);
-	});
+	var view_cats_list = {
+		init: function() {
+			this.catsList = $("#cats-list");
+			this.cat_list_template = $('script[data-template="cat-list"]').html();
 
-	$("#cats-list").append(cats_list_html);
+			// binding click methods to show car profile
+			$("#cats-list").on('click', '.cat-link', function(e) {
+				var cat_id = $(this).data("cat_id");
+				octopus.updateCatProfile(cat_id);
+			});
 
-	// Vote on click button and update cont info
-	$("#cat-info").on('click', '.clicker_button', function(e) {
-		var cat_id = $(this).data("cat_id");
-		cats[cat_id]["cat_click_count"] = cats[cat_id]["cat_click_count"] + 1;
-		// update count view
-		$("#clicker_count_" + cat_id).html("Clicks: " + "<strong>" + cats[cat_id]["cat_click_count"] + "</strong>");
-	});
+			this.render();
+		},
+
+		render: function() {
+			/* Render list of cats */
+			model.cats.forEach(function(cat_obj, index) {
+				var this_template = this.cat_list_template.replaceAll("{{cat_name}}", cat_obj.cat_name);
+				this_template = this_template.replaceAll("{{cat_id}}", cat_obj.cat_id);
+				this.catsList.append(this_template);
+			}.bind(this));
+		}
+	}
+
+	var view_cat_profile = {
+		init: function() {
+			this.cat_info = $("#cat-info");
+			this.cat_info_template = $('script[data-template="cat-info"]').html();
+			this.current_cat = octopus.getFirstCat();
+			this.render();
+
+			// Vote on click button and update cont info
+			$("#cat-info").on('click', '.clicker_button', function(e) {
+				var cat_id = $(this).data("cat_id");
+				octopus.voteCat(cat_id);
+			});
+
+		},
+
+		render: function() {
+			var this_template = this.cat_info_template.replaceAll("{{cat_id}}", this.current_cat.cat_id);
+			this_template = this_template = this_template.replaceAll("{{cat_name}}", this.current_cat.cat_name);
+			this_template = this_template.replaceAll("{{cat_image}}", config["images_dir"] + this.current_cat.cat_image);
+			this_template = this_template.replaceAll("{{cat_click_count}}", this.current_cat.cat_click_count);
+			this.cat_info.html(this_template);
+		}
+	}
+
+	octopus.init();
 });

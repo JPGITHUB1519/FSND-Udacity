@@ -3,7 +3,8 @@
 <head>
 	<title>Cat Clicker</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 	<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="assets/js/script.js"></script>
 </head>
@@ -28,5 +29,17 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- templates -->
+	<script type="text/template" data-template="cat-list">
+		<a href="#" class="list-group-item cat-link" id="cat_{{cat_id}}_link" data-cat_id={{cat_id}}>{{cat_name}}</a>
+	</script>
+
+	<script type="text/template" data-template="cat-info">
+		<h2 class="text-center">{{cat_name}}</h2>
+		<img src="{{cat_image}}" class="img-responsive img-circle center-block">
+		<h2 id="clicker_count_{{cat_id}}" class="text-center">Clicks: <strong>{{cat_click_count}}</strong></h2>
+		<button class="clicker_button btn btn-primary center-block" id="cat_{{cat_id}}_button" data-cat_id={{cat_id}}>Vote for {{cat_name}}</button>
+	</script>
 </body>
 </html>
