@@ -10,6 +10,7 @@ var config = {
 
 $(function() {
 	var model = {
+		currentCat: null,
 		cats: []
 	};
 
@@ -57,6 +58,14 @@ $(function() {
 
 		},
 
+		getCurrentCat: function() {
+			return model.current_cat;
+		},
+
+		setCurrentCat: function(cat_obj) {
+			model.current_cat = cat_obj;
+		},
+
 		getCatById: function(cat_id) {
 			/**
              * get a car obj by its cat_id
@@ -90,12 +99,13 @@ $(function() {
              * 
              */
 			var cat_obj = this.getCatById(cat_id);
-			view_cat_profile.current_cat = cat_obj;
+			octopus.setCurrentCat(cat_obj);
 			view_cat_profile.render();
 		},	
 
 		init: function() {
 			this.fillModelWithDummyData();
+			this.setCurrentCat(model.cats[0]);
 			view_cats_list.init();
 			view_cat_profile.init();
 		}
@@ -103,6 +113,7 @@ $(function() {
 
 	var view_cats_list = {
 		init: function() {
+			// saving the view elements on the view to performance 
 			this.catsList = $("#cats-list");
 			this.cat_list_template = $('script[data-template="cat-list"]').html();
 
@@ -129,7 +140,6 @@ $(function() {
 		init: function() {
 			this.cat_info = $("#cat-info");
 			this.cat_info_template = $('script[data-template="cat-info"]').html();
-			this.current_cat = octopus.getFirstCat();
 			this.render();
 
 			// Vote on click button and update cont info
@@ -141,10 +151,11 @@ $(function() {
 		},
 
 		render: function() {
-			var this_template = this.cat_info_template.replaceAll("{{cat_id}}", this.current_cat.cat_id);
-			this_template = this_template = this_template.replaceAll("{{cat_name}}", this.current_cat.cat_name);
-			this_template = this_template.replaceAll("{{cat_image}}", config["images_dir"] + this.current_cat.cat_image);
-			this_template = this_template.replaceAll("{{cat_click_count}}", this.current_cat.cat_click_count);
+			var current_cat = octopus.getCurrentCat();
+			var this_template = this.cat_info_template.replaceAll("{{cat_id}}", current_cat.cat_id);
+			this_template = this_template = this_template.replaceAll("{{cat_name}}", current_cat.cat_name);
+			this_template = this_template.replaceAll("{{cat_image}}", config["images_dir"] + current_cat.cat_image);
+			this_template = this_template.replaceAll("{{cat_click_count}}", current_cat.cat_click_count);
 			this.cat_info.html(this_template);
 		}
 	}
