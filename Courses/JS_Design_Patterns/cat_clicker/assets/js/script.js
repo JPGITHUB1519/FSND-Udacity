@@ -11,6 +11,10 @@ $(function() {
 	};
 
 	var octopus = {
+		getCats: function() {
+			return model.cats;
+		},
+
 		/* Model Changing data methods */
 		addNewCat: function(cat_obj) {
 			model.add(cat_obj);
@@ -149,8 +153,9 @@ $(function() {
 
 		render: function() {
 			/* Render list of cats */
+			cats = octopus.getCats();
 			this.catsList.html("");
-			model.cats.forEach(function(cat_obj, index) {
+			cats.forEach(function(cat_obj, index) {
 				var this_template = this.cat_list_template.replaceAll("{{cat_name}}", cat_obj.cat_name);
 				this_template = this_template.replaceAll("{{cat_id}}", cat_obj.cat_id);
 				this.catsList.append(this_template);

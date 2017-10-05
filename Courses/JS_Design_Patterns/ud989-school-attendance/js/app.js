@@ -20,6 +20,10 @@ $(function() {
             attendanceView.init();
         },
 
+        getData: function() {
+            return model.data;
+        },
+
         fillAttendanceWithData: function() {
             data = [
                 {
@@ -93,8 +97,9 @@ $(function() {
         },
 
         render: function() {
+            data = model.data;
             this.studentsBody.html('');
-            model.data.forEach(function(obj, index) {
+            data.forEach(function(obj, index) {
                 var template = this.studentAttendanceTemplate.replace("{{student_name}}", obj.name);
                 for (var i = 0; i < obj.attendance.length; i++) {
                     var attendance_checkbox_template = "";
